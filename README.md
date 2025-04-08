@@ -2,7 +2,7 @@
 
 Este projeto visa prever o valor **gasto anualmente por clientes de um plano de saúde**, priorizando modelos que **superestimem** o gasto em vez de subestimar — uma escolha estratégica para **evitar prejuízos por provisionamento insuficiente**.
 
-##Ambiente Virtual
+## Ambiente Virtual
 
 1. Crie o ambiente virtual:
 
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ---
 
-##Notebooks do Projeto
+## Notebooks do Projeto
 
 ### 1. `eda.ipynb`
 - Análise exploratória com:
@@ -87,7 +87,7 @@ bias          ≈ +33.83
 % subestimado ≈ 24.41%
 ```
 
-###Gráficos gerados em `plots/`:
+### Gráficos gerados em `plots/`:
 - Real vs Predito
 - Boxplot: QLoss, MAE, MAPE
 - Distribuição do Erro Absoluto
@@ -112,11 +112,11 @@ Conclusão: desempenho muito bom na maior parte dos dados, com poucos erros extr
 
 ---
 
-##Next Steps
+## Next Steps
 
 Mesmo com um modelo robusto e regularizado, os resultados atuais (ex: MAE ~ R$ 890, MAPE ~ 40%) indicam **espaço para melhorias**. Abaixo estão sugestões de próximos passos:
 
-###1. Criação de Novas Variáveis
+### 1. Criação de Novas Variáveis
 - **Variáveis combinadas** (interações entre features):
   - Ex: `idade * imc`, `classe * filhos`, `fumante * classe`
 - **Transformações não lineares**:
@@ -124,35 +124,35 @@ Mesmo com um modelo robusto e regularizado, os resultados atuais (ex: MAE ~ R$ 8
 - **Engenharia de percentis**:
   - Criação de flags para clientes em faixas extremas de valor (`top 10%`, `bottom 10%` etc.)
 
-###2. Categorização de Variáveis Numéricas via Árvores de Decisão
+### 2. Categorização de Variáveis Numéricas via Árvores de Decisão
 - Aplicar a função `categorize_with_decision_tree` para discretizar variáveis numéricas de forma supervisionada com base na variável resposta.
 - Essa técnica:
   - **Agrupa valores com comportamentos semelhantes** em relação ao alvo
   - **Melhora interpretabilidade**
   - Pode ser usada **junto com a variável original**
 
-###3. Análise de Outliers
+### 3. Análise de Outliers
 - Erros muito altos em alguns pontos indicam **valores extremos** impactando a performance.
 - Ações possíveis:
   - Remoção ou transformação de outliers
   - Criação de flags de “clientes atípicos”
 
-###4. Estratificação por Segmento
+### 4. Estratificação por Segmento
 - Criar modelos separados por grupo (`sexo`, `classe`, `faixa_etária`, etc.)
 - Modelos mais simples por cluster podem ser mais eficazes do que um modelo único complexo.
 
-###5. Outras Estratégias de Modelagem
+### 5. Outras Estratégias de Modelagem
 - Testar regressão quantílica nativa (`quantile regression`) com LightGBM ou CatBoost
 - Testar modelos com regularização robusta:
   - `ElasticNet`, `LassoLars`, etc.
 - Empilhar modelos (stacking) para aproveitar diferentes pontos fortes
 
-###6. Expansão do Dataset
+### 6. Expansão do Dataset
 - Buscar novos dados comportamentais, histórico de compras ou geográficos
 - Mais variabilidade pode ajudar modelos a generalizarem melhor
 ---
 
-##Conclusão
+## Conclusão
 
 Mesmo com apenas 3 variáveis selecionadas, o modelo demonstrou:
 - Boa capacidade preditiva para os dados disponíveis
