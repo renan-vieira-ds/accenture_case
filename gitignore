@@ -1,0 +1,22 @@
+# Ignorar dados e saídas temporárias
+data/
+plots/
+artifacts/
+sample_dashboards/
+catboost_info/
+
+# Python
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+.env
+.venv/
+*.egg-info/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db

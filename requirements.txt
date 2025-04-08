@@ -1,0 +1,14 @@
+pandas
+openpyxl
+numpy
+scikit-learn
+matplotlib
+seaborn
+xgboost
+lightgbm
+catboost
+boruta
+mlextend
+optuna
+joblib
+unidecode

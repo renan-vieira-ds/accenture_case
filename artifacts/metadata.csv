@@ -1,0 +1,13 @@
+variavel,tipo,percentual_nulos,valores_unicos,percentual_zeros
+matricula,int64,0.0,1211,0.0
+idade,float64,0.41,47,0.0
+nascimento,datetime64[ns],0.66,1162,0.0
+sexo,object,0.58,2,0.0
+imc,float64,0.41,525,0.0
+filhos,Int64,0.66,6,42.31
+fumante,Int64,0.66,2,80.22
+signo,object,0.5,12,0.0
+regiao,Int64,0.5,4,0.0
+facebook,Int64,0.25,2,31.46
+classe,Int64,0.41,10,0.0
+valor,float64,0.0,1207,0.33
