@@ -1,9 +1,7 @@
 # Ignorar dados e saídas temporárias
-data/
+data/*
 plots/
 artifacts/
-sample_dashboards/
-catboost_info/
 
 # Python
 __pycache__/
