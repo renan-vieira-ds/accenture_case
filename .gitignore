@@ -1,7 +1,5 @@
 # Ignorar dados e saídas temporárias
 data/*
-plots/
-artifacts/
 
 # Python
 __pycache__/
