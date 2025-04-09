@@ -1,6 +1,6 @@
 # Previsão de Gastos com Plano de Saúde
 
-Este projeto visa prever o valor **gasto anualmente por clientes de um plano de saúde**, priorizando modelos que **superestimem** o gasto em vez de subestimar — uma escolha estratégica para **evitar prejuízos por provisionamento insuficiente**.
+Este projeto visa prever o valor **gasto anualmente por clientes de um plano de saúde**, com modelos que **penalizam o erro de subestimar os gatos**, uma escolha estratégica para **evitar prejuízos por provisionamento insuficiente**.
 
 ## Ambiente Virtual
 
@@ -37,6 +37,7 @@ pip install -r requirements.txt
   - Scatterplots com `valor`
   - Boxplots por categorias
   - Correlações por faixa de valor
+  - Análise com A Priori para  extraçao de regras
 - Gera gráficos em: `plots/`
 
 ---
@@ -44,9 +45,9 @@ pip install -r requirements.txt
 ### 2. `data_prep.ipynb`
 - Pipeline de pré-processamento:
   - Imputação
-  - Escalonamento
+  - Padronizaçao
   - OneHotEncoding (binário e não binário)
-  - SafeColumnTransformer (para robustez com colunas ausentes)
+  - ColumnTransformer
 - Gera artefato:
   - `artifacts/pipeline_completo.pkl`: pipeline salvo com prepare_data
 
@@ -59,11 +60,13 @@ pip install -r requirements.txt
   - **Multicolinearidade** com VIF
 - Resultado:
   - Apenas **3 variáveis** selecionadas pelo Boruta
+    - Idade, IMC e fumante
     - Boruta é confiável pois cria "shadows" (variáveis barulho) e compara a importância das reais com essas.
     - Se a feature for mais importante que o melhor shadow, é confirmada.
+  - Seleçao confirmada  por feature  importance com Random Forest
+  - Multicolinearidade confirmou nao haver correlaçao entre as variáveis selecionadas
 - Gera gráficos de importância e multicolinearidade em `plots/`
 - Como artefato um csv com a seleçao do Boruta em `artifacts/`
-
 ---
 
 ### 4. `trainning_and_testing.ipynb`
@@ -72,7 +75,8 @@ pip install -r requirements.txt
   - Métrica principal: **Quantile Loss (Q=0.8)** para penalizar **subestimativas**
 - Modelo Campeão: **CatBoost**
   - Obteve melhor Q-Loss no teste
-  - Regularizado com `Optuna` (Bayesiana)
+  - Regularizado com parâmetros adequados 
+  - `Optuna` para otimizaçao de hiperparâmetros (Bayesiana)
   - 10-fold CV + Early Stopping
   - Artefatos:
     - `artifacts/modelo_final_catboost.pkl`
@@ -94,6 +98,7 @@ bias          ≈ +33.83
 - Feature Importance (CatBoost)
 
 Pelos gráficos, concluimos que:
+
 - Real vs Predito: 
   - A maioria dos pontos segue bem a linha vermelha (ideal).
   - Alguns pontos destoam bastante, especialmente:
