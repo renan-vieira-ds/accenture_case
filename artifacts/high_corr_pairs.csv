@@ -1,0 +1,4 @@
+variavel_1,variavel_2,correlacao
+num__idade,num__idade_x_imc,0.8759410644238225
+num__idade,num__idade_div_imc,0.8412075497292726
+num__fumante_x_imc,cat__fumante_x_regiao_0.0,-0.9678510107851018

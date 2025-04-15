@@ -12,3 +12,4 @@ mlextend
 optuna
 joblib
 unidecode
+mlflow
